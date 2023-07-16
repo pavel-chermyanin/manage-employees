@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 require('dotenv').config()
 
@@ -15,6 +16,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 // express.json() и express.urlencoded() нужны для отправки тела запроса
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
