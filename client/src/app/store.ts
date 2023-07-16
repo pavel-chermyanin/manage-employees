@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action,  } from "@reduxjs/toolkit";
 import auth from "../features/auth/authSlice";
+import { listenerMiddleware } from "../middleware/auth";
 import { api } from "./services/api";
 
 export const store = configureStore({
@@ -8,7 +9,7 @@ export const store = configureStore({
     auth,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(api.middleware)
+    return getDefaultMiddleware().concat(api.middleware).prepend(listenerMiddleware.middleware)
   }
 });
 
