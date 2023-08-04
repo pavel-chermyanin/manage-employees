@@ -1,16 +1,16 @@
-import { employeeApi } from './../../app/services/employees';
+import { employeeApi } from "./../../app/services/employees";
 import { RootState } from "./../../app/store";
 import { Employee } from "@prisma/client";
 import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState {
   employees: Employee[] | null;
-//   isAuthenticated: boolean;
+  //   isAuthenticated: boolean;
 }
 
 const initialState: InitialState = {
   employees: null,
-//   isAuthenticated: false,
+  //   isAuthenticated: false,
 };
 
 const slice = createSlice({
@@ -25,13 +25,12 @@ const slice = createSlice({
       //     state.user = action.payload;
       //     state.isAuthenticated = true;
       //   })
-      //   .addMatcher(
-      //     employeeApi.endpoints.register.matchFulfilled,
-      //     (state, action) => {
-      //       state.user = action.payload;
-      //       state.isAuthenticated = true;
-      //     }
-      //   )
+      // .addMatcher(
+      //   employeeApi.endpoints.addEmployee.matchFulfilled,
+      //   (state, action) => {
+      //     state.employees = action.payload;
+      //   }
+      // )
       .addMatcher(
         employeeApi.endpoints.getAllEmployees.matchFulfilled,
         (state, action) => {

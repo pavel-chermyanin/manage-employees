@@ -31,6 +31,7 @@ const columns: ColumnsType<Employee> = [
 
 interface EmployeesProps {}
 export const Employees: React.FC<EmployeesProps> = () => {
+
   const navigate = useNavigate();
   const user = useSelector(selectUser);
   const { data, isLoading } = useGetAllEmployeesQuery();
@@ -40,11 +41,15 @@ export const Employees: React.FC<EmployeesProps> = () => {
       navigate(Paths.login);
     }
   }, [user, navigate]);
+
+    const gotToAddUser = () => {
+      navigate(Paths.employeeAdd)
+    };
   return (
     <Layout>
       <CustomButton
         type="primary"
-        onClick={() => null}
+        onClick={gotToAddUser}
         icon={<PlusCircleOutlined />}
       >
         Добавить

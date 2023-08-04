@@ -1,9 +1,6 @@
 import { Employee } from "@prisma/client";
 import { api } from "./api";
 
-// export type EmployeeData = Omit<Employee, "id">;
-// type ResponseLoginData = Employee;
-
 export const employeeApi = api.injectEndpoints({
   endpoints: (builder) => ({
     // login: builder.mutation<ResponseLoginData, UserData>({
@@ -13,13 +10,13 @@ export const employeeApi = api.injectEndpoints({
     //     body: userData,
     //   }),
     // }),
-    // register: builder.mutation<ResponseLoginData, UserData>({
-    //   query: (userData) => ({
-    //     url: "/user/register",
-    //     method: "POST",
-    //     body: userData,
-    //   }),
-    // }),
+    addEmployee: builder.mutation<Employee, Employee>({
+      query: (employee) => ({
+        url: "/employees/add",
+        method: "POST",
+        body: employee,
+      }),
+    }),
     getAllEmployees: builder.query<Employee[], void>({
       query: () => ({
         url: "/employees/",
@@ -29,8 +26,8 @@ export const employeeApi = api.injectEndpoints({
   }),
 });
 
-export const {  useGetAllEmployeesQuery} = employeeApi;
+export const { useGetAllEmployeesQuery, useAddEmployeeMutation } = employeeApi;
 
 export const {
-  endpoints: { getAllEmployees },
+  endpoints: { getAllEmployees, addEmployee },
 } = employeeApi;
