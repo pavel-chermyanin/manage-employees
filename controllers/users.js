@@ -42,7 +42,7 @@ const login = async (req, res) => {
 };
 
 /**
- * @route POST /api/user/купшыеук
+ * @route POST /api/user/register
  * @desс Регистрация
  * @access Public
  */

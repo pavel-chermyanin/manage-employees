@@ -8,5 +8,5 @@ export const Auth: React.FC<AuthProps> = ({ children }) => {
   if (isLoading) {
     return <span>Загрузка</span>;
   }
-  return { children };
+  return children
 };
