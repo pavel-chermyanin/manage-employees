@@ -58,7 +58,6 @@ export const EmployeeForm: React.FC<Props<Employee>> = ({
             {btnText}
           </CustomButton>
         </Space>
-        Войти
       </Form>
     </Card>
   );

@@ -17,17 +17,35 @@ export const employeeApi = api.injectEndpoints({
         body: employee,
       }),
     }),
+    removeEmployee: builder.mutation<string, string>({
+      query: (id) => ({
+        url: `/employees/remove/${id}`,
+        method: "DELETE",
+        body: { id },
+      }),
+    }),
     getAllEmployees: builder.query<Employee[], void>({
       query: () => ({
         url: "/employees/",
         method: "GET",
       }),
     }),
+    getEmployee: builder.query<Employee, string>({
+      query: (id) => ({
+        url: `/employees/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useGetAllEmployeesQuery, useAddEmployeeMutation } = employeeApi;
+export const {
+  useGetAllEmployeesQuery,
+  useAddEmployeeMutation,
+  useGetEmployeeQuery,
+  useRemoveEmployeeMutation,
+} = employeeApi;
 
 export const {
-  endpoints: { getAllEmployees, addEmployee },
+  endpoints: { getAllEmployees, addEmployee, getEmployee, removeEmployee },
 } = employeeApi;
