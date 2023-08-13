@@ -3,13 +3,6 @@ import { api } from "./api";
 
 export const employeeApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    // login: builder.mutation<ResponseLoginData, UserData>({
-    //   query: (userData) => ({
-    //     url: "/user/login",
-    //     method: "POST",
-    //     body: userData,
-    //   }),
-    // }),
     addEmployee: builder.mutation<Employee, Employee>({
       query: (employee) => ({
         url: "/employees/add",
@@ -17,10 +10,17 @@ export const employeeApi = api.injectEndpoints({
         body: employee,
       }),
     }),
+    editEmployee: builder.mutation<string, Employee>({
+      query: (employee) => ({
+        url: `/employees/edit/${employee.id}`,
+        method: "PUT",
+        body: employee,
+      }),
+    }),
     removeEmployee: builder.mutation<string, string>({
       query: (id) => ({
         url: `/employees/remove/${id}`,
-        method: "DELETE",
+        method: "POST",
         body: { id },
       }),
     }),
@@ -44,8 +44,9 @@ export const {
   useAddEmployeeMutation,
   useGetEmployeeQuery,
   useRemoveEmployeeMutation,
+  useEditEmployeeMutation
 } = employeeApi;
 
 export const {
-  endpoints: { getAllEmployees, addEmployee, getEmployee, removeEmployee },
+  endpoints: { getAllEmployees, addEmployee, getEmployee, removeEmployee ,editEmployee},
 } = employeeApi;
